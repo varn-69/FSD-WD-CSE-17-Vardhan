@@ -1,27 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Validate Name & Password</title>
+  <title>Registration Form</title>
+  <style>
+    span {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Register</h2>
+  <h2>Registration Form</h2>
 
-  <form id="form">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br>
-    <span id="nameErr" style="color:red;"></span><br>
+  <form id="regForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <span id="nameErr"></span><br><br>
 
-    <label for="pwd">Password:</label><br>
-    <input type="password" id="pwd" name="pwd"><br>
-    <span id="pwdErr" style="color:red;"></span><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <span id="pwdErr"></span><br><br>
 
-    <button type="submit">Submit</button>
+    <label for="email">E-mail ID:</label>
+    <input type="text" id="email" name="email"><br><br>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone"><br><br>
+
+    <label>Sex:</label>
+    <input type="radio" id="male" name="sex" value="Male"> Male
+    <input type="radio" id="female" name="sex" value="Female"> Female<br><br>
+
+    <label>Date of Birth:</label>
+    <select name="day">
+      <option>Day</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+    </select>
+
+    <select name="month">
+      <option>Month</option>
+      <option>January</option>
+      <option>February</option>
+      <option>March</option>
+    </select>
+
+    <select name="year">
+      <option>Year</option>
+      <option>2000</option>
+      <option>2001</option>
+      <option>2002</option>
+    </select><br><br>
+
+    <label>Languages Known:</label><br>
+    <input type="checkbox" name="lang" value="English"> English<br>
+    <input type="checkbox" name="lang" value="Telugu"> Telugu<br>
+    <input type="checkbox" name="lang" value="Hindi"> Hindi<br>
+    <input type="checkbox" name="lang" value="Tamil"> Tamil<br><br>
+
+    <label for="address">Address:</label><br>
+    <textarea id="address" name="address" rows="4" cols="40"></textarea><br><br>
+
+    <input type="submit" value="Register">
+    <input type="reset" value="Reset">
   </form>
 
   <script>
-    const form = document.getElementById('form');
+    const form = document.getElementById('regForm');
     const nameInput = document.getElementById('name');
-    const pwdInput = document.getElementById('pwd');
+    const pwdInput = document.getElementById('password');
     const nameErr = document.getElementById('nameErr');
     const pwdErr = document.getElementById('pwdErr');
 
@@ -31,12 +79,12 @@
       pwdErr.textContent = '';
 
       if (nameInput.value.trim().length < 6) {
-        nameErr.textContent = 'Name must be at least 6 characters';
+        nameErr.textContent = 'Name must be at least 6 characters long';
         valid = false;
       }
 
       if (pwdInput.value.length < 6) {
-        pwdErr.textContent = 'Password must be at least 6 characters';
+        pwdErr.textContent = 'Password must be at least 6 characters long';
         valid = false;
       }
 
@@ -46,7 +94,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (validate()) {
-        alert('Form submitted successfully');
+        alert('Registration Successful!');
         form.reset();
       }
     });
