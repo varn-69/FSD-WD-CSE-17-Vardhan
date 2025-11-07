@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Validate Name & Password</title>
+</head>
+<body>
+  <h2>Register</h2>
+
+  <form id="form">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <span id="nameErr" style="color:red;"></span><br>
+
+    <label for="pwd">Password:</label><br>
+    <input type="password" id="pwd" name="pwd"><br>
+    <span id="pwdErr" style="color:red;"></span><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('form');
+    const nameInput = document.getElementById('name');
+    const pwdInput = document.getElementById('pwd');
+    const nameErr = document.getElementById('nameErr');
+    const pwdErr = document.getElementById('pwdErr');
+
+    function validate() {
+      let valid = true;
+      nameErr.textContent = '';
+      pwdErr.textContent = '';
+
+      if (nameInput.value.trim().length < 6) {
+        nameErr.textContent = 'Name must be at least 6 characters';
+        valid = false;
+      }
+
+      if (pwdInput.value.length < 6) {
+        pwdErr.textContent = 'Password must be at least 6 characters';
+        valid = false;
+      }
+
+      return valid;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (validate()) {
+        alert('Form submitted successfully');
+        form.reset();
+      }
+    });
+
+    nameInput.addEventListener('input', validate);
+    pwdInput.addEventListener('input', validate);
+  </script>
+</body>
+</html>
